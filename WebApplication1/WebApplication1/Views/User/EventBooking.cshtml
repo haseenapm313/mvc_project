@@ -1,0 +1,226 @@
+﻿@model WebApplication1.Models.Eventbooking
+
+@{
+    ViewBag.Title = "EventBooking";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+        }
+
+        #menu ul li a {
+            text-decoration: none;
+            color: #063c3c;
+        }
+
+            #menu ul li a:hover {
+                color: white;
+            }
+
+        #menu_right ul li a {
+            text-decoration: none;
+            color: #063c3c;
+        }
+
+            #menu_right ul li a:hover {
+                color: white;
+            }
+
+        a:hover {
+            color: white;
+        }
+
+        .form-horizontal {
+            width: 700px;
+            height: min-content;
+            margin-left: 500px;
+            border-radius: 12px;
+            background: #eee;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-top: 30px;
+            margin-left: 40px;
+           
+        }
+
+            .form-group a {
+                color: black;
+                text-decoration: none;
+                margin-left: 250px;
+                position:absolute;
+                margin-top:-50px;
+                font-size:x-large;
+            }
+
+                .form-group a:hover {
+                    color: mediumblue;
+                }
+
+        .col-md-6 {
+            margin-left: 50px;
+        }
+
+        label {
+            margin-left: 30px;
+        }
+
+
+        .btn-default {
+            margin-left: 200px;
+        }
+
+        .btn-success {
+            margin-left: 80px;
+        }
+  
+    </style>
+</head>
+<body >
+<br />
+<br />
+
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <h3 style=" text-align :center ;background-color:darkgrey;height:50px;margin-top:-5px;padding:10px">Book A Hall</h3>
+    <br />
+    <br />
+    <p style=" color:red;margin-left:50px;font-size:16px;position:relative ">@TempData["EventMessage"]</p>
+    <div class=" form-group">
+     @Html.ActionLink("Book Now", "ConfirmBooking")
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RegId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("RegId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RegId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.EventDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("EventName", new List<SelectListItem>{ new SelectListItem { Text="Meeting",Value="Meeting"},
+            new SelectListItem { Text="Engagement",Value="Engagement"}, new SelectListItem { Text="Nikah",Value="Nikah"},
+            new SelectListItem { Text="Marriage",Value="Marriage"}})
+            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lobby, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("Lobby", new List<SelectListItem>{ new SelectListItem { Text="Lobby a/c",Value="Lobby a/c"},
+            new SelectListItem { Text="Lobby Non a/c ",Value="Lobby Non a/c"}, new SelectListItem { Text="None",Value="None"}})
+            @Html.ValidationMessageFor(model => model.Lobby, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hall, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("Hall", new List<SelectListItem>{ new SelectListItem { Text="Hall and Stage a/c",Value="Hall and Stage a/c"},
+           new SelectListItem { Text="Hall and Stage Non a/c",Value="Hall and Stage Non a/c"}, new SelectListItem { Text="None",Value="None"}})
+            @Html.ValidationMessageFor(model => model.Hall, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("Room", new List<SelectListItem>{ new SelectListItem { Text="Green Room a/c",Value="Green Room a/c"},
+         new SelectListItem { Text="Green Room Non a/c ",Value="Green Room Non a/c"},
+         new SelectListItem { Text="Suit Room a/c",Value="Suit Room a/c"},
+         new SelectListItem { Text="Suit Room Non a/c",Value="Suit Room Non a/c"},
+         new SelectListItem { Text="Green Room and Suit Room a/c",Value="Green Room and Suit Room a/c"},
+         new SelectListItem { Text="Green Room and Suit Room Non a/c",Value="Green Room and Suit Room Non a/c"},
+         new SelectListItem { Text="None",Value="None"}})
+            @Html.ValidationMessageFor(model => model.Room, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dining, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("Dining", new List<SelectListItem>{ new SelectListItem { Text="Seating 500",Value="Seating 500"},
+          new SelectListItem { Text="Seating 800 ",Value="Seating 800 "},
+          new SelectListItem { Text="Seating 1000",Value="Seating 1000 "},
+          new SelectListItem { Text="Seating 1500",Value="Seating 1500 "},
+          new SelectListItem { Text="Seating 2000",Value="Seating 2000 "},
+          new SelectListItem { Text="Seating 2500",Value="Seating 2500 "},
+          new SelectListItem { Text="Seating 3000",Value="Seating 3000 "},
+          new SelectListItem { Text="None",Value="None"}})
+            @Html.ValidationMessageFor(model => model.Dining, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("Parking", new List<SelectListItem>{ new SelectListItem { Text="Parking Main",Value="Parking Main"},
+          new SelectListItem { Text="Parking Side",Value="Parking Side"},
+          new SelectListItem { Text="Parking Main and Side",Value="Parking Main and Side"},
+          new SelectListItem { Text="None",Value="None"}})
+            @Html.ValidationMessageFor(model => model.Parking, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Check Hall availability" class="btn btn-success" />
+
+        </div>
+
+    </div>
+</div>
+}
+</body>
+</html> 

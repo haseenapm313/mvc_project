@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <style type="text/css">
+        #menu ul li {
+            float: left;
+            display: inline;
+            padding: 20px;
+            margin-top:20px;
+        }
+
+        #menu_right ul li {
+            float: right;
+            display: inline;
+            padding: 20px;
+            margin-top: -30px;
+            margin-right:20px;
+        }
+       
+    </style>
+    
+</head>
+
+<body>
+    <div>
+        <table align="center" cellpadding="5" cellspacing="5" width="100%" >
+            <tr align="center" style="background-image: url('/Images/tooplate_header.jpg'); background-repeat:repeat-x">
+                <td colspan="2" style=" font-size:40px;word-spacing:4px;letter-spacing:2px;font-family:Verdana, Geneva, Tahoma, sans-serif">Event Management System</td>
+            </tr>
+            <tr style="background-image: url('/Images/tooplate_header.jpg'); background-repeat:repeat-x">
+                <td colspan=" 2" style="font-size:20px">
+                    
+                    <div id="menu">
+                        <ul class="navbar">
+                            @if (Session["UsernameS"] != null && Session["PasswordS"] != null)
+                            {
+
+                                <li>@Html.ActionLink("Event Booking", "EventBooking", "User")</li>
+                                <li>@Html.ActionLink("Confirm Booking", "ConfirmBooking", "User")</li>
+                                <li>@Html.ActionLink("View Profile", "Details", "User")</li>
+                                <li>@Html.ActionLink("Booking Report", "BookingReport", "User")</li>
+
+                            }
+                            else if (Session["UsernameM"] != null && Session["PasswordM"] != null)
+                            {
+                                <li>@Html.ActionLink("Booking Report", "BookingOrder", "Manager")</li>
+                                <li>@Html.ActionLink("Hall Detailes", "HallDetails", "Manager")</li>
+                                <li>@Html.ActionLink("Search User", "SearchUser", "Manager")</li>
+                                <li>@Html.ActionLink("View Profile", "ManagerProfile", "Manager")</li>
+                                <li>@Html.ActionLink("User Booking Detailes", "UserBookingDetails", "Manager")</li>
+                            }
+                            else if (Session["UsernameA"] != null && Session["PasswordA"] != null)
+                            {
+                                <li>@Html.ActionLink("Booking Report", "BookingReport", "Admin")</li>
+                                <li>@Html.ActionLink("Finished Report", "FinishedReport", "Admin")</li>
+                                <li>@Html.ActionLink("Hall Details", "HallDetails", "Admin")</li>
+                                <li>@Html.ActionLink("Manager List", "ManagerList", "Admin")</li>
+                                <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Hall Details", "HallDetails", "Home")</li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            }
+                        </ul>
+                    </div>
+                    <div id="menu_right">
+                        <ul class="navbar-right">
+                            @if (Session["UsernameS"] != null && Session["PasswordS"] != null)
+                            {
+                                <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameS"]!</p></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                            }
+                            else if (Session["UsernameM"] != null && Session["PasswordM"] != null)
+                            {
+                                <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameM"]!</p></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Manager")</li>
+                            }
+                            else if (Session["UsernameA"] != null && Session["PasswordA"] != null)
+                            {
+                                <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameA"]!</p></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Admin")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                                <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="2">
+                    
+                     <div style=" min-height:500px">
+                       @RenderBody()
+                   </div>
+                </td>
+            
+
+            </tr>
+
+            <tr align="center">
+                <td colspan="2">
+                    <div style=" background-image: url('/Images/tooplate_header_repeat.png'); background-repeat: repeat-x;height :80px;position:relative">
+                     <p style="position:absolute;left:630px;top :15px">
+                            &copy; @DateTime.Now.Year -  Hitech Regency <br />
+                            Services|Sound Systems|Echo Systems
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

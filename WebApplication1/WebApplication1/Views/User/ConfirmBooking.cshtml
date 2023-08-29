@@ -1,0 +1,152 @@
+﻿@model IEnumerable<WebApplication1.Models.Eventbooking>
+
+@{
+    ViewBag.Title = "ConfirmBooking";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+        }
+
+        #menu ul li a {
+            text-decoration: none;
+            color: #063c3c;
+        }
+
+            #menu ul li a:hover {
+                color: white;
+            }
+
+        #menu_right ul li a {
+            text-decoration: none;
+            color: #063c3c;
+        }
+
+            #menu_right ul li a:hover {
+                color: white;
+            }
+
+
+    
+
+        .form-horizontal {
+            width: 700px;
+            height: min-content;
+            margin-left: 500px;
+            border-radius: 12px;
+            background: #808080;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-top: 30px;
+            margin-left: 40px;
+        }
+
+            .form-group a {
+                color: black;
+                text-decoration: none;
+                margin-left: 450px;
+            }
+
+                .form-group a:hover {
+                    color: white;
+                }
+    </style>
+</head>
+<body>
+    <br />
+    <h2 style="text-align:center ">ConfirmBooking</h2>
+
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lobby)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lobby)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hall)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Book Now?", "Book", new { id = item.BookingId }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

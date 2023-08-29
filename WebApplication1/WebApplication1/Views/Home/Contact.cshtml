@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Site.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+        }
+
+        #menu ul li a {
+            text-decoration: none;
+            color: #063c3c;
+            
+        }
+        #menu ul li a:hover {
+                color: white;
+            }
+
+        #menu_right ul li a {
+            text-decoration: none;
+            color: #063c3c;
+        }
+
+        #menu_right ul li a:hover {
+                color: white;
+            }
+        .form-horizontal {
+            width: 700px;
+            height: min-content;
+            margin-left: 500px;
+            border-radius: 12px;
+            background: #808080;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-top: 30px;
+            margin-left: 40px;
+        }
+
+            .form-group a {
+                color: black;
+                text-decoration: none;
+                margin-left: 450px;
+            }
+
+                .form-group a:hover {
+                    color: white;
+                }
+    </style>
+</head>
+<body>
+    <div class=" container ">
+        <h2>This Page is Under Construction</h2>
+        <h3>@ViewBag.Message</h3>
+
+        <address>
+            One Microsoft Way<br />
+            Redmond, WA 98052-6399<br />
+            <abbr title="Phone">P:</abbr>
+            425.555.0100
+        </address>
+
+        <address>
+            <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        </address>
+        
+    </div>
+</body>
+</html>

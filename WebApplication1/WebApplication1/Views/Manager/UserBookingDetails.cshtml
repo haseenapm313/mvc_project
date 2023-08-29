@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication1.Models.Eventbooking>
+
+@{
+    ViewBag.Title = "UserBookingDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align :center">User Booking Details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Email Id
+        </th>
+        <th>
+            Mobile No
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registration.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registration.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registration.EmailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registration.Mobile)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+
+    </tr>
+}
+
+</table>

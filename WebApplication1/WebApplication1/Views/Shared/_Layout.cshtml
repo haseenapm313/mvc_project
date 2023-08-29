@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (Session["UsernameS"] == null && Session["UsernameM"] == null && Session["UsernameA"] == null)
+                {
+                @Html.ActionLink("Event Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["UsernameS"] != null && Session["PasswordS"] != null)
+                    {
+
+                        <li>@Html.ActionLink("Event Booking", "EventBooking", "User")</li>
+                        <li>@Html.ActionLink("Confirm Booking", "ConfirmBooking", "User")</li>
+                        <li>@Html.ActionLink("View Profile", "Details", "User")</li>
+                        <li>@Html.ActionLink("Booking Report", "BookingReport", "User")</li>
+
+                    }
+                    else if (Session["UsernameM"] != null && Session["PasswordM"] != null)
+                    {
+                        <li>@Html.ActionLink("Booking Report", "BookingOrder", "Manager")</li>
+                        <li>@Html.ActionLink("Hall Detailes", "HallDetails", "Manager")</li>
+                        <li>@Html.ActionLink("Search User", "SearchUser", "Manager")</li>
+                        <li>@Html.ActionLink("View Profile", "ManagerProfile", "Manager")</li>
+                        <li>@Html.ActionLink("User Booking Detailes", "UserBookingDetails", "Manager")</li>
+                    }
+                    else if (Session["UsernameA"] != null && Session["PasswordA"] != null)
+                    {
+                        <li>@Html.ActionLink("Booking Report", "BookingReport", "Admin")</li>
+                        <li>@Html.ActionLink("Finished Report", "FinishedReport", "Admin")</li>
+                        <li>@Html.ActionLink("Hall Details", "HallDetails", "Admin")</li>
+                        <li>@Html.ActionLink("Manager List", "ManagerList", "Admin")</li>
+                        <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Hall Details", "HallDetails", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav" style="float:right!important">
+                    @if (Session["UsernameS"] != null && Session["PasswordS"] != null)
+                    {
+                        <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameS"]!</p></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                    }
+                    else if (Session["UsernameM"] != null && Session["PasswordM"] != null)
+                    {
+                        <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameM"]!</p></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Manager")</li>
+                    }
+                    else if (Session["UsernameA"] != null && Session["PasswordA"] != null)
+                    {
+                        <li><p style="color :#fff;margin-top:15px;">Hello! @Session["UsernameA"]!</p></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Admin")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />*@
+        @*<footer>
+            <p>&copy; @DateTime.Now.Year -  Hitech Regency</p>
+        </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
